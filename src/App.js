@@ -8,7 +8,7 @@ function App() {
   return (
       <ChakraProvider>
         <BooksContextProvider>
-          <Flex my='20px' mx='auto' w='90%' maxW='700px' direction='column'>
+          <Flex my='20px' mx='auto' w='90%' maxW='500px' direction='column'>
             <Header />
             <BookList />
             <NewBookForm />

@@ -1,6 +1,6 @@
 import {Flex} from '@chakra-ui/react'
 import { useBooks } from '../contexts/BooksContext';
-import BookCard from './BookCards';
+import BookCard from './BookCard';
 
 const BookList = () => {
     const { books } = useBooks()
