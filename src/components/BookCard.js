@@ -1,7 +1,9 @@
 import { Box, Text, Heading } from "@chakra-ui/react";
 import { useBooks } from "../contexts/BooksContext";
+import {auth} from '../firebase/config'
 
 const BookCard = ({ book }) => {
+
 
     const {removeBook} = useBooks()
 
