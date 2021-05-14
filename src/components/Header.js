@@ -7,6 +7,7 @@ const Header = () => {
    return (
       <Box
          p="30px"
+         mt='50px'
          textAlign="center"
          bgColor="#2C5282"
          w="100%"

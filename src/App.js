@@ -1,20 +1,27 @@
-import { ChakraProvider, Flex} from "@chakra-ui/react"
+import { ChakraProvider} from "@chakra-ui/react"
 import BookList from "./components/BookList";
 import Header from "./components/Header";
 import NewBookForm from "./components/NewBookForm";
-import BooksContextProvider from "./contexts/BooksContext";
+import AppContainer from "./components/AppContainer";
+
+import AuthContextProvider from './contexts/AuthContext'
+import BooksContextProvider from './contexts/BooksContext'
+import SignOutButton from "./components/SignOutButton";
 
 function App() {
   return (
-      <ChakraProvider>
+    <ChakraProvider>
+      <AuthContextProvider>
         <BooksContextProvider>
-          <Flex my='20px' mx='auto' w='90%' maxW='500px' direction='column'>
+          <AppContainer>
+            <SignOutButton />
             <Header />
             <BookList />
             <NewBookForm />
-          </Flex>
+          </AppContainer>
         </BooksContextProvider>
-      </ChakraProvider>
+      </AuthContextProvider>
+    </ChakraProvider>
   );
 }
 
