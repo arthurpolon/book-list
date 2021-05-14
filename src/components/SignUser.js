@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Flex,
   Box,
@@ -9,17 +10,30 @@ import {
   Heading,
   useColorModeValue,
   Alert,
-  AlertIcon
+  AlertIcon,
+  Text,
+  Link
 } from '@chakra-ui/react';
+
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../contexts/AuthContext';
 
-export default function LoginForm() {
-  const { signInUser, error } = useAuth()
+export default function SignUser() {
+  const { signInUser, error, setError, createUser } = useAuth()
+  const [ isSigningUp, setIsSigningUp ] = useState(false)
   const { register, handleSubmit, formState: { isSubmitting } } = useForm()
 
   const onSubmit = (data) => {
-    signInUser(data.email.trim(), data.password.trim())
+    if(isSigningUp){
+      if(data.password.trim() === data.repeatPassword.trim()){
+        createUser(data.email.trim(), data.password.trim())
+      }else{
+        setError('Passwords does not match.')
+      }
+    } else (
+      signInUser(data.email.trim(), data.password.trim())
+    )
+    
   }
 
   return (
@@ -30,7 +44,18 @@ export default function LoginForm() {
       bg={useColorModeValue('white', 'gray.800')}>
       <Stack spacing={8} mx={'auto'} w='100%' py={12} px={6}>
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>Sign in</Heading>
+          <Heading fontSize={'4xl'}>{ isSigningUp ? "Sign Up" : "Sign In" }</Heading>
+        </Stack>
+        <Stack align="center">
+          {isSigningUp ? (
+            <Text fontSize={'lg'} color={'gray.600'}>
+            Already have an account? <Link color={'blue.400'} onClick={() => setIsSigningUp(false)}>Sign In</Link>
+          </Text>
+          ) : (
+            <Text fontSize={'lg'} color={'gray.600'}>
+              Don't have an account? <Link color={'blue.400'} onClick={() => setIsSigningUp(true)}>Sign Up</Link>
+            </Text>
+          )}
         </Stack>
         <Box
           rounded={'lg'}
@@ -47,11 +72,17 @@ export default function LoginForm() {
                   <FormLabel>Password</FormLabel>
                   <Input {...register("password")} type="password" />
                 </FormControl>
+                {isSigningUp && (
+                  <FormControl isDisabled={isSubmitting} isRequired id="repeat-password">
+                    <FormLabel>Repeat Password</FormLabel>
+                    <Input {...register("repeatPassword")} type="password" />
+                  </FormControl>  
+                )}
                 <Button
                   isLoading={isSubmitting}
                   type="submit"
                   colorScheme="teal">
-                  Sign in
+                  {isSigningUp ? "Sign Up" : "Sign In"}
                 </Button>
                 
                 {error && 

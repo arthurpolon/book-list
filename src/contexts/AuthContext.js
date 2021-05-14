@@ -24,6 +24,8 @@ function AuthContextProvider ({children}) {
 
     const createUser = (email, password) => {
         auth.createUserWithEmailAndPassword(email, password)
+            .then(setError(''))
+            .catch(err => setError(err.message))
     }
 
     return (
