@@ -1,7 +1,7 @@
 import { Box, Text, Heading } from "@chakra-ui/react";
 import { useBooks } from "../contexts/BooksContext";
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, id }) => {
 
 
     const {removeBook} = useBooks()
@@ -15,9 +15,9 @@ const BookCard = ({ book }) => {
              color:'gray.400'
          }}
          onClick={() => {
-            removeBook(book.id);
+            removeBook(id);
          }}
-         key={book.id}
+         key={book.uid}
          bg="blue.700"
          w="380px"
          mt="20px"

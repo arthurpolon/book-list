@@ -29,7 +29,7 @@ function AuthContextProvider ({children}) {
     }
 
     return (
-        <AuthContext.Provider value={ {user, setUser, createUser, signInUser, signOutUser, error, setError} }>
+        <AuthContext.Provider value={ {user, createUser, signInUser, signOutUser, error, setError} }>
             { children }
         </AuthContext.Provider>
     );

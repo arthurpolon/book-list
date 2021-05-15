@@ -6,7 +6,7 @@ import AppContainer from "./components/AppContainer";
 
 import AuthContextProvider from './contexts/AuthContext'
 import BooksContextProvider from './contexts/BooksContext'
-import SignOutButton from "./components/SignOutButton";
+import UserInfo from "./components/UserInfo";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <AuthContextProvider>
         <BooksContextProvider>
           <AppContainer>
-            <SignOutButton />
+            <UserInfo />
             <Header />
             <BookList />
             <NewBookForm />

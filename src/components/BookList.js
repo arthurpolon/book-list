@@ -8,7 +8,7 @@ const BookList = () => {
     return (
         <Flex w='100%' bg='#1A365D' direction='column'>
             {books.map(book => {
-                return (<BookCard book={book}/>)
+                return (<BookCard book={book.data()} id={book.id} key={book.id}/>)
             })}
         </Flex>
     );

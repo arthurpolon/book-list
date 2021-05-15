@@ -23,17 +23,17 @@ export default function SignUser() {
   const [ isSigningUp, setIsSigningUp ] = useState(false)
   const { register, handleSubmit, formState: { isSubmitting } } = useForm()
 
+
   const onSubmit = (data) => {
-    if(isSigningUp){
-      if(data.password.trim() === data.repeatPassword.trim()){
-        createUser(data.email.trim(), data.password.trim())
-      }else{
-        setError('Passwords does not match.')
-      }
-    } else (
-      signInUser(data.email.trim(), data.password.trim())
-    )
-    
+      if(isSigningUp){
+        if(data.password.trim() === data.repeatPassword.trim()){
+          createUser(data.email.trim(), data.password.trim())
+        }else{
+          setError('Passwords does not match.')
+        }
+      } else (
+        signInUser(data.email.trim(), data.password.trim())
+      )
   }
 
   return (
@@ -81,7 +81,7 @@ export default function SignUser() {
                 <Button
                   isLoading={isSubmitting}
                   type="submit"
-                  colorScheme="teal">
+                  colorScheme="blue">
                   {isSigningUp ? "Sign Up" : "Sign In"}
                 </Button>
                 
