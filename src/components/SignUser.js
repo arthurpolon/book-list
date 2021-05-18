@@ -19,9 +19,9 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function SignUser() {
-  const { signInUser, error, setError, createUser } = useAuth()
+  const { signInUser, error, setError, createUser, loading, setLoading } = useAuth()
   const [ isSigningUp, setIsSigningUp ] = useState(false)
-  const { register, handleSubmit, formState: { isSubmitting } } = useForm()
+  const { register, handleSubmit, formState: {isSubmitting} } = useForm()
 
 
   const onSubmit = (data) => {
@@ -31,9 +31,9 @@ export default function SignUser() {
         }else{
           setError('Passwords does not match.')
         }
-      } else (
+      } else {
         signInUser(data.email.trim(), data.password.trim())
-      )
+      }
   }
 
   return (

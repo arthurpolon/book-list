@@ -7,6 +7,7 @@ export const BooksContext = createContext();
 const BooksContextProvider = ({ children }) => {
    const [books, setBooks] = useState([]);
    const { user } = useAuth();
+   const [loading, setLoading] = useState(true)
 
    useEffect(() => {
       if (user) {
@@ -17,10 +18,12 @@ const BooksContextProvider = ({ children }) => {
                setBooks([]);
                snapshot.docs.forEach((doc) => {
                   setBooks((prevBooks) => [...prevBooks, doc]);
+                  setLoading(false)
                });
             });
       } else {
          setBooks([]);
+         setLoading(false)
       }
    }, [user]);
 
@@ -41,7 +44,7 @@ const BooksContextProvider = ({ children }) => {
    };
 
    return (
-      <BooksContext.Provider value={{ books, addBook, removeBook }}>
+      <BooksContext.Provider value={{ books, addBook, removeBook, loading, setLoading }}>
          {children}
       </BooksContext.Provider>
    );
