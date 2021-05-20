@@ -1,24 +1,25 @@
-import { Box, Text, Heading } from "@chakra-ui/react";
+import { Box, Text, Heading} from "@chakra-ui/react";
 import { useBooks } from "../contexts/BooksContext";
+import { useColors } from "../contexts/ColorsContext";
 
 const BookCard = ({ book, id }) => {
 
+   const {removeBook} = useBooks()
 
-    const {removeBook} = useBooks()
+    const {textColor, primaryColor} = useColors()
 
    return (
       <Box
          cursor="pointer"
          _hover={{
              textDecorationLine: 'line-through',
-             backgroundColor:'rgba(0,0,0,0.1)',
-             color:'gray.400'
          }}
          onClick={() => {
             removeBook(id);
          }}
          key={book.uid}
-         bg="blue.700"
+         bg={primaryColor}
+         color={textColor}
          w="380px"
          mt="20px"
          mx="auto"

@@ -4,23 +4,22 @@ import Header from "./components/Header";
 import NewBookForm from "./components/NewBookForm";
 import AppContainer from "./components/AppContainer";
 
-import AuthContextProvider from './contexts/AuthContext'
-import BooksContextProvider from './contexts/BooksContext'
 import UserInfo from "./components/UserInfo";
+import ThemeButton from "./components/ThemeButton";
+import AppContextProvider from "./contexts/AppContext";
 
 function App() {
   return (
     <ChakraProvider>
-      <AuthContextProvider>
-        <BooksContextProvider>
+        <AppContextProvider>
+          <ThemeButton />
           <AppContainer>
             <UserInfo />
             <Header />
             <BookList />
             <NewBookForm />
           </AppContainer>
-        </BooksContextProvider>
-      </AuthContextProvider>
+        </AppContextProvider>
     </ChakraProvider>
   );
 }

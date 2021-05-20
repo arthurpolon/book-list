@@ -1,26 +1,29 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import { useBooks } from "../contexts/BooksContext";
+import { useColors } from "../contexts/ColorsContext";
 
 const Header = () => {
    const { books } = useBooks();
+
+   const {textColor, primaryColor} = useColors()
 
    return (
       <Box
          p="30px"
          mt='50px'
          textAlign="center"
-         bgColor="#2C5282"
+         bgColor={primaryColor}
          w="100%"
          borderRadius="5px 5px 0 0"
-         color="#eee"
+         marginBottom=""
       >
-         <Heading mb='10px'>Polon Book List</Heading>
+         <Heading color={textColor} mb='10px'>Polon Book List</Heading>
          {books.length ? (
-            <Text>
+            <Text color={textColor}>
                Currently you have {books.length} books to get through...
             </Text>
          ) : (
-            <Text>Currently you have no books to read.</Text>
+            <Text color={textColor}>Currently you have no books to read.</Text>
          )}
       </Box>
    );

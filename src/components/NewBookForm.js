@@ -3,11 +3,14 @@ import { Flex, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useBooks } from "../contexts/BooksContext";
+import { useColors } from "../contexts/ColorsContext";
 
 const NewBookForm = () => {
    const { addBook } = useBooks();
 
    const { register, handleSubmit, reset} = useForm()
+
+   const {textColor, primaryColor, secondaryColor, colorMode} = useColors()
 
    const onSubmit = ({title, author}) => {
       addBook(title, author)
@@ -17,13 +20,13 @@ const NewBookForm = () => {
    return (
       <Flex
          justify="center"
-         bg="blue.900"
+         bg={secondaryColor}
          p="40px"
          w="100%"
          borderRadius="0 0 5px 5px"
       >
          <form onSubmit={handleSubmit(onSubmit)}>
-            <Flex justify="center" align="center" direction="column">
+            <Flex justify="center" align="center" direction="column" color={textColor}>
                <FormLabel>Add a book</FormLabel>
                <FormControl mb="15px" w="300px">
                   <FormLabel hidden>Book Title</FormLabel>
@@ -32,6 +35,7 @@ const NewBookForm = () => {
                      size="sm"
                      required
                      {...register("title")}
+                     bg={colorMode === "light" ? '#fff' : 'transparent'}
                   ></Input>
                </FormControl>
                <FormControl mb="30px">
@@ -41,9 +45,10 @@ const NewBookForm = () => {
                      size="sm"
                      required
                      {...register("author")}
+                     bg={colorMode === "light" ? '#fff' : 'transparent'}
                   ></Input>
                </FormControl>
-               <Button w="150px" type="submit">
+               <Button bg={primaryColor} color={textColor} w="150px" type="submit">
                   Add Book
                </Button>
             </Flex>

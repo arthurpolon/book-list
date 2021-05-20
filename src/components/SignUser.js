@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Flex,
   Box,
   FormControl,
   FormLabel,
@@ -19,7 +18,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function SignUser() {
-  const { signInUser, error, setError, createUser, loading, setLoading } = useAuth()
+  const { signInUser, error, setError, createUser} = useAuth()
   const [ isSigningUp, setIsSigningUp ] = useState(false)
   const { register, handleSubmit, formState: {isSubmitting} } = useForm()
 
@@ -37,11 +36,6 @@ export default function SignUser() {
   }
 
   return (
-    <Flex
-      minH={'100vh'}
-      align={'center'}
-      justify={'center'}
-      bg={useColorModeValue('white', 'gray.800')}>
       <Stack spacing={8} mx={'auto'} w='100%' py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>{ isSigningUp ? "Sign Up" : "Sign In" }</Heading>
@@ -94,6 +88,5 @@ export default function SignUser() {
           </form>
         </Box>
       </Stack>
-    </Flex>
   );
 }
